@@ -1,36 +1,40 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import { toast } from "react-hot-toast";
+import { useAuth } from "../context/AuthContext";
 const SignUpPage = () => {
-  type FormState = {
-    email: string;
-    password: string;
-  };
-  const [userData, setUserData] = useState<FormState>({
+  const router = useRouter();
+  const [user, setUser] = React.useState({
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const { email, password } = userData;
+  const { email, password } = user;
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const { signUp }: any = useAuth();
   const onChange = (e: any) => {
-    setUserData((prev: any) => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value,
-      };
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
     });
   };
-  const onSignup = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSignup = async (e: any) => {
     try {
-      setIsLoading(true);
-      const res = await axios.get("/api/user/signup");
-      console.log("from onsigup");
+      e.preventDefault();
+      setLoading(true);
+      signUp(user);
+      toast.success("Successfully Signup");
     } catch (error: any) {
-      console.error("error ", error.message);
+      console.log("Signup failed", error.message);
+      toast.error(error.message);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
+      setUser({
+        email: "",
+        password: "",
+      });
     }
   };
   return (
@@ -38,7 +42,7 @@ const SignUpPage = () => {
       <h1 className="text-4xl font-bold pb-12"> Pomodoro App</h1>
       <div className=" max-w-md border-2 border-dashed w-full rounded-lg p-10 shadow-md ">
         <h1 className="text-center text-2xl">SignUp</h1>
-        <form action="" onSubmit={onSignup}>
+        <form action="" onSubmit={(e) => onSignup(e)}>
           <div className="min-h-64 flex flex-col gap-6">
             <div className="">
               <label htmlFor="" className="block pb-2 pl-1">
@@ -77,7 +81,7 @@ const SignUpPage = () => {
             type="submit"
             className="bg-white text-red-500 w-full py-2 px-4 rounded-md font-bold"
           >
-            {isLoading ? "proccessing..." : "Sign Up"}
+            {loading ? "proccessing..." : "Sign Up"}
           </button>
         </form>
         <Link

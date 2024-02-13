@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "@/app/context/AuthContext";
+import { TaskProvider } from "./context/TaskContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +18,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AuthProvider>
+          <TaskProvider>
+            <Toaster position="top-right" reverseOrder={false} />
+            {children}
+            <footer className="min-h-20">
+              <ul className="flex justify-center items-center gap-4">
+                <li className="underline">Saket Kumar</li>
+                <li className="underline">Github</li>
+                <li className="underline">LinkedIn</li>
+              </ul>
+            </footer>
+          </TaskProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }
