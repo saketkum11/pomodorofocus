@@ -15,6 +15,12 @@ export async function GET(request: NextRequest) {
     }
     const user = await User.findById(decodedId);
 
+    if (!user) {
+      return NextResponse.json(
+        { message: "user does not exit" },
+        { status: 403 }
+      );
+    }
     const allTask = await Task.aggregate([
       {
         $match: {
@@ -38,12 +44,6 @@ export async function GET(request: NextRequest) {
         },
       },
     ]);
-    if (!user) {
-      return NextResponse.json(
-        { message: "user does not exit" },
-        { status: 403 }
-      );
-    }
 
     return NextResponse.json(
       { success: true, message: "Task Fetched Succefully", data: allTask },
