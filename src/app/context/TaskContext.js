@@ -8,15 +8,7 @@ const TaskProvider = ({ children }) => {
   const [taskList, setTaskList] = useState([]);
   const [taskEditData, setTaskEditData] = useState({});
   const [singleTask, setSingleTask] = useState({});
-  const getAllTask = async () => {
-    try {
-      const res = await axios.get("/api/tasks/getTask");
-      console.log("from alltask", res);
-      setTaskList(data.data);
-    } catch (error) {
-      console.error(error.message);
-    }
-  };
+
   const addTask = async (taskData) => {
     try {
       const res = await axios.post("/api/tasks/addTask", taskData);
@@ -69,9 +61,7 @@ const TaskProvider = ({ children }) => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    getAllTask();
-  }, []);
+
   return (
     <TaskContext.Provider
       value={{
@@ -82,7 +72,6 @@ const TaskProvider = ({ children }) => {
         deleteTask,
         getTaskById,
         taskCompleted,
-        getAllTask,
       }}
     >
       {children}
