@@ -54,7 +54,6 @@ const TaskProvider = ({ children }) => {
         `/api/tasks/updateTask/${taskdata._id}`,
         taskdata
       );
-      console.log("from taskcompleted", res);
       setSingleTask(res.data.data);
     } catch (error) {
       console.error(error);

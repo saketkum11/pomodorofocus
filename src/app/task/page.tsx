@@ -24,7 +24,6 @@ export default function Task() {
   const handleLogout = async () => {
     try {
       const response = await axios.post("/api/user/logout");
-      console.log("Signup success", response.data);
       toast.success("Logout Successfully");
       router.push("/login");
     } catch (error: any) {

@@ -10,7 +10,6 @@ const AuthProvider = ({ children }) => {
   const signUp = async (user) => {
     try {
       const response = await axios.post("/api/user/signup", user);
-      console.log("from signup", response);
       setUserData(response.data.savedUser);
     } catch (error) {
       console.error(error);
