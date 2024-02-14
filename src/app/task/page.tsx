@@ -128,7 +128,7 @@ export default function Task() {
                 );
               })}
             </ul>
-            <div className="relative ">
+            <div className="relative py-4">
               <button
                 onClick={handleClick}
                 className=" flex items-center justify-center w-full gap-4  border-2 border-dashed bg-red-400 py-4 mt-8 shadow-2xl rounded-lg"

@@ -24,8 +24,8 @@ const LoginPage = () => {
       e.preventDefault();
       setLoading(true);
       login(user);
-      router.push("/task");
       toast.success("Logged In Successfully");
+      router.push("/task");
     } catch (error: any) {
       console.log("Signup failed", error);
       toast.error(error.message);
