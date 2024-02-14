@@ -12,7 +12,6 @@ const TaskProvider = ({ children }) => {
   const addTask = async (taskData) => {
     try {
       const res = await axios.post("/api/tasks/addTask", taskData);
-
       setTaskEditData(res.data.data);
     } catch (error) {
       console.error(error.message);

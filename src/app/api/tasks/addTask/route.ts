@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
         { status: 403 }
       );
     }
-    const decodedId = getDecodeToken(request);
+    const decodedId = await getDecodeToken(request);
 
     if (!decodedId) {
       return NextResponse.json(
