@@ -11,6 +11,8 @@ Feature
 - timer ( start and pause)
 - Responsive website
   
+DataBase 
+- MongoDB
   
 Tech stack used
 - Next Js (Frontend and backend)
