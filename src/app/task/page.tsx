@@ -71,10 +71,6 @@ export default function Task() {
             </div>
             <div>
               <div className="flex items-center gap-4">
-                <button className="flex items-center justify-center gap-2 bg-red-400 rounded-md p-2">
-                  <UserCircleIcon className="w-8 flex justify-center" />
-                  <span className="hidden sm:block">Login</span>
-                </button>
                 <button
                   onClick={handleLogout}
                   className="flex items-center justify-center gap-2 bg-red-400 rounded-md p-2"
@@ -92,7 +88,7 @@ export default function Task() {
                   <li>Pomodoro</li>
                 </ul>
               </div>
-              <div className="text-9xl text-center">
+              <div className="md:text-9xl text-6xl text-center">
                 {getTimerConvert(time)}
               </div>
               <button

@@ -42,6 +42,7 @@ const LoginPage = () => {
       <h1 className="text-4xl font-bold pb-12"> Pomodoro App</h1>
       <div className=" max-w-md border-2 border-dashed w-full rounded-lg p-10 shadow-md ">
         <h1 className="text-center text-2xl">Login</h1>
+        <span>Redirect to Task Page</span>
         <form action="" onSubmit={onLogin}>
           <div className="min-h-64 flex flex-col gap-6">
             <div className="">
