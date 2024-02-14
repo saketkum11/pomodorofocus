@@ -35,7 +35,7 @@ export default function Task() {
   useEffect(() => {
     const getAllTaskList = async () => {
       try {
-        const { data } = await axios.get("/api/tasks/getTask");
+        const { data } = await axios.get("/api/tasks/getTask", {});
         setAllTasks(data.data);
       } catch (error: any) {
         console.log("Signup failed", error);
