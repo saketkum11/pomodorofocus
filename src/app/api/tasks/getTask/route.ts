@@ -1,6 +1,5 @@
 import User from "@/model/user.model";
 import Task from "@/model/task.model";
-import { getDecodeToken } from "@/utils/getDecodeToken";
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoose } from "@/dbConfig/dbConfig";
 import Jwt from "jsonwebtoken";
