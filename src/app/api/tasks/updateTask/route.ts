@@ -9,13 +9,11 @@ export async function PATCH(request: NextRequest) {
   try {
     const requestBody = await request.json();
     const { _id } = requestBody;
-    console.log(requestBody);
 
     if (!_id) {
       return NextResponse.json({ message: "Invalid Task Id" }, { status: 403 });
     }
     const task = await Task.findByIdAndUpdate(_id, requestBody);
-    console.log(requestBody);
 
     return NextResponse.json(
       { message: "created Task", data: requestBody },
