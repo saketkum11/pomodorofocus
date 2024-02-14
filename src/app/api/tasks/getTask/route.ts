@@ -3,12 +3,11 @@ import Task from "@/model/task.model";
 import { NextRequest, NextResponse } from "next/server";
 import { connectMongoose } from "@/dbConfig/dbConfig";
 import Jwt from "jsonwebtoken";
+import { getDecodeToken } from "@/utils/getDecodeToken";
 connectMongoose();
 export async function GET(request: NextRequest) {
   try {
-    const tokenValue = (await request.cookies.get("token")?.value) || "";
-    const decodeToken: any = Jwt.verify(tokenValue, process.env.SECRET_TOKEN!);
-    const decodedId: any = decodeToken._id;
+    const decodedId: any = await getDecodeToken(request);
     console.log(decodedId);
 
     if (!decodedId) {
