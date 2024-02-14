@@ -9,7 +9,7 @@ export default function Home() {
       <section className="min-h-screen  hidden md:flex justify-center items-center bg-white md:col-start-1 col-end-8 text-black ">
         <h1 className="text-5xl text-center">Let Do more Productive work</h1>
       </section>
-      <section className=" min-h-screen flex justify-center items-center bg-red-500   md:col-start-8 md:col-end-13  text-white">
+      <section className=" min-h-screen flex justify-center flex-col md:block items-center bg-red-500   md:col-start-8 md:col-end-13  text-white">
         <div className=" hidden md:flex md:justify-center md:mt-8 gap-8 md:min-h-60">
           <Link href="/login" className="">
             Login
