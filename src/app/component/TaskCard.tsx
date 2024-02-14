@@ -45,8 +45,7 @@ const TaskCard = ({ setToggleTask, handleTask, allTasks }: any) => {
     try {
       e.preventDefault();
       addTask(taskData);
-      getAllTask();
-      setToggleTask(false);
+      setToggleTask((flag: any) => !flag);
       toast.success("SuccessFully created Task");
     } catch (error: any) {
       console.error(error.message);
@@ -70,8 +69,7 @@ const TaskCard = ({ setToggleTask, handleTask, allTasks }: any) => {
       }
     };
     getAllTaskList();
-  }, [handleTask]);
-  console.log(taskEditData);
+  }, [handleTask, allTasks]);
 
   return (
     <div className="absolute -top-40 right-0 left-0 bg-white text-black rounded-lg">

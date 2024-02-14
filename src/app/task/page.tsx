@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import TaskCard from "../component/TaskCard";
 import TaskList from "../component/TaskList";
 import Timer from "@/utils/timer";
+import { useTask } from "../context/TaskContext";
 export default function Task() {
   const [toggleSetting, setToggleSetting] = useState(false);
   const [toggleTask, setToggleTask] = useState(false);
@@ -42,7 +43,7 @@ export default function Task() {
       }
     };
     getAllTaskList();
-  }, [setAllTasks]);
+  }, []);
 
   const { time, isActive, setTime, setIsActive } = Timer();
   const getTimerConvert = (time: number) => {
@@ -103,14 +104,10 @@ export default function Task() {
               <button onClick={() => handleReset()}>Reset</button>
             </div>
             <div className="text-center my-4">
-              <p>#4</p>
               <p className="text-xl">Time for a break!</p>
             </div>
             <div className="flex justify-between items-end border-b-2 pb-4">
               <span className="text-2xl">Tasks</span>
-              <button className="bg-red-400 rounded-md px-2 py-2">
-                <EllipsisVerticalIcon className="w-8" />
-              </button>
             </div>
             <ul className="flex flex-col gap-4 mt-4">
               {[...allTasks].reverse().map((task) => {
@@ -122,6 +119,7 @@ export default function Task() {
                       key={_id}
                       setToggleTask={setToggleTask}
                       setAllTasks={setAllTasks}
+                      allTasks={allTasks}
                     />
                   </>
                 );

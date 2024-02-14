@@ -12,7 +12,7 @@ import { useTask } from "../context/TaskContext";
 import TaskEditModal from "./TaskEditModal";
 import { CheckBadgeIcon } from "@heroicons/react/16/solid";
 
-const TaskList = ({ task, setToggleTask, setAllTasks }: any) => {
+const TaskList = ({ task, setToggleTask, setAllTasks, allTasks }: any) => {
   const { setTaskEditData }: any = useTask();
   const [taskModal, setTaskModal] = useState(false);
   const { deleteTask, getTaskById, taskCompleted }: any = useTask();
@@ -37,14 +37,27 @@ const TaskList = ({ task, setToggleTask, setAllTasks }: any) => {
     setTaskModal((flag: any) => !flag);
     setTaskEditData(task);
   };
-  const handleGetTaskById = (e: any) => {
-    e.stopPropagation();
-    getTaskById(task._id);
+
+  const handleCompletedTask = async (e: any) => {
+    try {
+      e.stopPropagation();
+      taskCompleted(task);
+      const { data } = await axios.get("/api/tasks/getTask");
+      setAllTasks(data.data);
+    } catch (error) {}
   };
-  const handleCompletedTask = (e: any) => {
-    e.stopPropagation();
-    taskCompleted(task);
-  };
+  useEffect(() => {
+    const getAllTaskList = async () => {
+      try {
+        const { data } = await axios.get("/api/tasks/getTask");
+        setAllTasks(data.data);
+      } catch (error: any) {
+        console.log("Signup failed", error);
+        toast.error(error.message);
+      }
+    };
+    getAllTaskList();
+  }, [setAllTasks]);
   return (
     <li className="relative flex justify-between gap-4  px-4 py-2 rounded-md bg-white cursor-pointer text-black">
       <div className="flex item-center gap-4">
@@ -72,7 +85,13 @@ const TaskList = ({ task, setToggleTask, setAllTasks }: any) => {
           <TrashIcon className="w-6" />
         </button>
       </div>
-      {taskModal && <TaskEditModal setTaskModal={setTaskModal} />}
+      {taskModal && (
+        <TaskEditModal
+          setTaskModal={setTaskModal}
+          setAllTasks={setAllTasks}
+          allTasks={allTasks}
+        />
+      )}
     </li>
   );
 };

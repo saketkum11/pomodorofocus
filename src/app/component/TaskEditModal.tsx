@@ -2,8 +2,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useTask } from "../context/TaskContext";
+import axios from "axios";
 
-const TaskEditModal = ({ setTaskModal }: any) => {
+const TaskEditModal = ({
+  setTaskModal,
+  setAllTasks,
+  handleTask,
+  allTasks,
+}: any) => {
   const { updateTask, taskEditData, addTask }: any = useTask();
   const [taskData, setTaskData] = useState({
     title: taskEditData?.title,
@@ -50,7 +56,18 @@ const TaskEditModal = ({ setTaskModal }: any) => {
       console.error(error.message);
     }
   };
-
+  useEffect(() => {
+    const getAllTaskList = async () => {
+      try {
+        const { data } = await axios.get("/api/tasks/getTask");
+        setAllTasks(data.data);
+      } catch (error: any) {
+        console.log("Signup failed", error);
+        toast.error(error.message);
+      }
+    };
+    getAllTaskList();
+  }, [setAllTasks, allTasks]);
   return (
     <div className="absolute -top-20 left-0 right-0 z-30  bg-white text-black rounded-lg">
       <div className="w-full p-4 ">
