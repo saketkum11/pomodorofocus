@@ -38,7 +38,7 @@ const LoginPage = () => {
     }
   };
   return (
-    <main className="bg-red-500 min-h-screen flex  flex-col  justify-center items-center  text-white">
+    <main className="bg-red-500 min-h-screen px-6 flex  flex-col  justify-center items-center  text-white">
       <h1 className="text-4xl font-bold pb-12"> Pomodoro App</h1>
       <div className=" max-w-md border-2 border-dashed w-full rounded-lg p-10 shadow-md ">
         <h1 className="text-center text-2xl">Login</h1>
