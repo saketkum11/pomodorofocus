@@ -9,4 +9,6 @@ Feature
 - on complete task toggle gray to green
 - update
 - timer ( start and pause)
+- Responsive website
+  
   
