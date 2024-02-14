@@ -8,6 +8,7 @@ connectMongoose();
 export async function GET(request: NextRequest) {
   try {
     const decodedId: any = await getDecodeToken(request);
+    console.log(decodedId);
 
     if (!decodedId) {
       return NextResponse.json({ message: "invalid id" }, { status: 403 });
