@@ -10,7 +10,7 @@ export default function Home() {
         <h1 className="text-5xl text-center">Let Do more Productive work</h1>
       </section>
       <section className=" min-h-screen bg-red-500   md:col-start-8 md:col-end-13  text-white">
-        <div className=" hidden md:flex md:justify-center md:mt-8 gap-8">
+        <div className=" hidden md:flex md:justify-center md:mt-8 gap-8 md:min-h-60">
           <Link href="/login" className="">
             Login
           </Link>
@@ -18,7 +18,7 @@ export default function Home() {
             Signup
           </Link>
         </div>
-        <div className="min-h-screen flex flex-col justify-center items-center md:mt-80 gap-8">
+        <div className=" flex flex-col justify-center items-center  gap-8">
           <h2 className=" flex flex-wrap items-center text-3xl lg:text-6xl">
             PomodoroFocus
           </h2>
