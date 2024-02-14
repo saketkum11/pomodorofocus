@@ -12,3 +12,6 @@ Feature
 - Responsive website
   
   
+Tech stack used
+- Next Js (Frontend and backend)
+- Tailwind Css
